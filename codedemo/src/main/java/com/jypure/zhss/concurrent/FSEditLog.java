@@ -77,7 +77,7 @@ public class FSEditLog {
                     return;
                 }
 
-                //到这里，说明没有一个线程在等待执行将下一批editlog刷到磁盘中去，那么这个线程就需要做这件事了
+                //到这里，说明没有一个线程在等待执行将下一批editlog刷到磁盘中去，那么这个线程就需要做这件事了（等待）
                 //首先，将是否有线程在等待刷新下一批editlog的标志位设置为true
                 isWaitSync = true;
                 //然后，循环等待，直到上一批editlog已经刷新完毕了
