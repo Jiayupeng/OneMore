@@ -12,6 +12,20 @@
         <module>algorithm</module>
         <module>codedemo</module>
     </modules>
+    <properties>
+        <slf4j.version>1.7.6</slf4j.version>
+    </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <!--logback-->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
 
 </project>
