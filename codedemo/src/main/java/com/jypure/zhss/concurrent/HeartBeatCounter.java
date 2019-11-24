@@ -3,7 +3,7 @@ package com.jypure.zhss.concurrent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * 一个心跳计数器，使用原子类，进行心跳统计
@@ -22,7 +22,7 @@ public class HeartBeatCounter {
     /**
      * 最近一分钟的心跳次数
      */
-    private AtomicLong latestMinuteHeartBeatRate = new AtomicLong(0L);
+    private LongAdder latestMinuteHeartBeatRate = new LongAdder();
 
     /**
      * 最近一分钟的时间戳
@@ -47,7 +47,7 @@ public class HeartBeatCounter {
     }
 
     public void increment(){
-        latestMinuteHeartBeatRate.incrementAndGet();
+        latestMinuteHeartBeatRate.increment();
     }
 
     /**
@@ -55,7 +55,7 @@ public class HeartBeatCounter {
      * @return
      */
     public long get(){
-        return latestMinuteHeartBeatRate.get();
+        return latestMinuteHeartBeatRate.longValue();
     }
 
     private class Daemon extends Thread {
@@ -65,7 +65,7 @@ public class HeartBeatCounter {
                 try {
                     long currentTime = System.currentTimeMillis();
                     if(currentTime - latestMinuteTimestamp > 60 * 1000) {
-                        latestMinuteHeartBeatRate = new AtomicLong(0L);
+                        latestMinuteHeartBeatRate = new LongAdder();
                         latestMinuteTimestamp = System.currentTimeMillis();
                     }
                     Thread.sleep(1000);
