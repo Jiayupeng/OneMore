@@ -1,4 +1,4 @@
-package com.jypure.zhss.concurrent;
+package com.jypure.demo.concurrent;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
