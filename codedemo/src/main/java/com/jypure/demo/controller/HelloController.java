@@ -29,6 +29,10 @@ public class HelloController {
         return springService.saySth();
     }
 
+    /**
+     * 测试内部类
+     * @return
+     */
     @RequestMapping("/print")
     public String printInner(){
 
@@ -37,6 +41,17 @@ public class HelloController {
         count++;
         return inner.toString();
 
+    }
+
+    /**
+     * 测试countDownLatch
+     * @return
+     */
+    @RequestMapping("/exe")
+    public String execute(){
+        springService.fillInfo();
+
+        return "fill info finished";
     }
 
 }
