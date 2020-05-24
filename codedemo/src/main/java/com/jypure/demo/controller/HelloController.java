@@ -1,10 +1,13 @@
 package com.jypure.demo.controller;
 
+import com.jypure.demo.model.Person;
 import com.jypure.demo.spring.CommonService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author : jiayupeng
@@ -48,10 +51,10 @@ public class HelloController {
      * @return
      */
     @RequestMapping("/exe")
-    public String execute(){
-        commonService.fillInfo();
+    public Object execute(){
+        List<Person> people = commonService.fillInfo();
 
-        return "fill info finished";
+        return people;
     }
 
 }
