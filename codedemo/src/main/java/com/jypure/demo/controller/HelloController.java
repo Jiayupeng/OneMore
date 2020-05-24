@@ -1,6 +1,6 @@
 package com.jypure.demo.controller;
 
-import com.jypure.demo.spring.SpringService;
+import com.jypure.demo.spring.CommonService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ public class HelloController {
     Integer count = 0;
 
     @Autowired
-    private SpringService springService;
+    private CommonService commonService;
 
     @RequestMapping("/")
     public String hello(){
@@ -26,7 +26,7 @@ public class HelloController {
 
     @RequestMapping("/say")
     public String saySth(){
-        return springService.saySth();
+        return commonService.saySth();
     }
 
     /**
@@ -36,7 +36,7 @@ public class HelloController {
     @RequestMapping("/print")
     public String printInner(){
 
-        SpringService.InnerClass inner = springService.getInner();
+        CommonService.InnerClass inner = commonService.getInner();
         System.out.println("print " + count + "次");
         count++;
         return inner.toString();
@@ -49,7 +49,7 @@ public class HelloController {
      */
     @RequestMapping("/exe")
     public String execute(){
-        springService.fillInfo();
+        commonService.fillInfo();
 
         return "fill info finished";
     }

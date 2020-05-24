@@ -12,13 +12,13 @@ import java.util.concurrent.TimeUnit;
  * @date : 2020/5/24/11:47
  */
 @Service
-public class SpringService {
+public class CommonService {
 
     InnerClass inner;
 
     ExecutorService executorService ;
 
-    public SpringService(){
+    public CommonService(){
         this.inner = new InnerClass("spring service inner class");
         executorService = Executors.newFixedThreadPool(5);
     }
