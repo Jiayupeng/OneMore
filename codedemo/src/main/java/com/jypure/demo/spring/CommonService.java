@@ -39,6 +39,7 @@ public class CommonService {
 
     public List<Person> fillInfo(){
         long startTime = System.currentTimeMillis();
+        System.out.println(executorService.toString());
         System.out.println("begin time:" + startTime);
 
         CountDownLatch latch = new CountDownLatch(5);
