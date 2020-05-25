@@ -21,33 +21,35 @@ public class CommonService {
 
     InnerClass inner;
 
-    ExecutorService executorService ;
+    List<Person> collect;
+    ExecutorService executorService;
 
-    public CommonService(){
+    public CommonService() {
         this.inner = new InnerClass("spring service inner class");
-        executorService = Executors.newFixedThreadPool(5);
+        executorService = Executors.newFixedThreadPool(6);
+        collect = Stream.generate(Person::new).limit(10).collect(Collectors.toList());
     }
 
-    public String saySth(){
+    public String saySth() {
         return inner.getName();
     }
 
-    public InnerClass getInner(){
+    public InnerClass getInner() {
         return inner;
     }
 
 
-    public List<Person> fillInfo(){
+    public List<Person> fillInfo() {
         long startTime = System.currentTimeMillis();
         System.out.println(executorService.toString());
         System.out.println("begin time:" + startTime);
 
-        CountDownLatch latch = new CountDownLatch(5);
-        List<Person> collect = Stream.generate(Person::new).limit(10).collect(Collectors.toList());
+        CountDownLatch latch = new CountDownLatch(6);
+
 
         System.out.println("collect size:" + collect.size());
 
-        executorService.submit(()-> {
+        executorService.submit(() -> {
             try {
                 System.out.println("task1 execute 1000");
                 Thread.sleep(1000);
@@ -60,7 +62,7 @@ public class CommonService {
             }
         });
 
-        executorService.submit(()-> {
+        executorService.submit(() -> {
             try {
                 System.out.println("task2 execute 2000");
                 Thread.sleep(2000);
@@ -73,7 +75,7 @@ public class CommonService {
             }
         });
 
-        executorService.submit(()-> {
+        executorService.submit(() -> {
             try {
                 System.out.println("task3 execute 1500");
                 Thread.sleep(1500);
@@ -86,9 +88,9 @@ public class CommonService {
             }
         });
 
-        executorService.submit(()-> {
+        executorService.submit(() -> {
             try {
-                System.out.println("task4 execute 2500");
+                System.out.println("task4 execute 1000");
                 Thread.sleep(1000);
                 collect.stream().forEach((n) -> n.setUid(141002199900000032L));
             } catch (InterruptedException e) {
@@ -99,9 +101,9 @@ public class CommonService {
             }
         });
 
-        executorService.submit(()-> {
+        executorService.submit(() -> {
             try {
-                System.out.println("task5 execute 3000");
+                System.out.println("task5 execute 1500");
                 Thread.sleep(1500);
                 collect.stream().forEach((n) -> n.setName("张三"));
             } catch (InterruptedException e) {
@@ -111,6 +113,8 @@ public class CommonService {
                 System.out.println("5count:" + latch.getCount());
             }
         });
+
+        executorService.submit(new FillInfoWorker(latch));
 
         try {
             latch.await(5, TimeUnit.SECONDS);
@@ -130,11 +134,11 @@ public class CommonService {
     }
 
 
-    public class InnerClass{
+    public class InnerClass {
 
         private String name;
 
-        public InnerClass(String name){
+        public InnerClass(String name) {
             this.name = name;
         }
 
@@ -146,5 +150,30 @@ public class CommonService {
             this.name = name;
         }
     }
+
+    class FillInfoWorker implements Runnable {
+
+        CountDownLatch latch;
+
+        FillInfoWorker(CountDownLatch latch) {
+            this.latch = latch;
+        }
+
+        @Override
+        public void run() {
+
+            try {
+                System.out.println("task6 execute 1500");
+                Thread.sleep(1500);
+                collect.stream().forEach(n -> n.setInteresting("learn"));
+                System.out.println("task6 complete");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                latch.countDown();
+            }
+        }
+    }
+
 
 }

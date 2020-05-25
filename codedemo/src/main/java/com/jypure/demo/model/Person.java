@@ -18,6 +18,8 @@ public class Person implements Serializable {
 
     private Long uid;
 
+    private String interesting;
+
     public String getName() {
         return name;
     }
@@ -56,5 +58,13 @@ public class Person implements Serializable {
 
     public void setUid(Long uid) {
         this.uid = uid;
+    }
+
+    public String getInteresting() {
+        return interesting;
+    }
+
+    public void setInteresting(String interesting) {
+        this.interesting = interesting;
     }
 }
