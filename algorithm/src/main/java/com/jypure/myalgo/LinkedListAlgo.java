@@ -23,7 +23,7 @@ public class LinkedListAlgo {
     }
 
     /**
-     * 监测环
+     * 检测环
      * @param list
      * @return
      */
