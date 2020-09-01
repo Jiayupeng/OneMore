@@ -44,6 +44,29 @@ public class LinkedListAlgo {
     }
 
 
+    /**
+     * 寻找中间节点
+     * @param list
+     * @return
+     */
+    public static Node findMiddleNode(Node list) {
+        if (null == list) {
+            return null;
+        }
+
+        Node fast = list;
+        Node slow = list;
+
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+        return slow;
+    }
+
+
+
     public static Node createNode(int value){
         return new Node(value, null);
     }
