@@ -22,6 +22,7 @@
     <properties>
         <slf4j.version>1.7.6</slf4j.version>
         <java.version>1.8</java.version>
+        <netty.version>4.1.56.Final</netty.version>
     </properties>
 
     <dependencyManagement>
@@ -32,7 +33,18 @@
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
-
+            <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>30.1-jre</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
