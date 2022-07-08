@@ -3,10 +3,12 @@ package com.jypure.leetcode;
 import com.jypure.ListNode;
 
 /**
+ * 两两交换链表中的节点
+ * https://leetcode.cn/problems/swap-nodes-in-pairs/
  * @author : jiayupeng
  * @date : 2022/7/6/17:11
  */
-public class Code24 {
+public class Code1 {
 
     public ListNode swapPairs(ListNode head) {
         if (head == null) {

@@ -3,10 +3,12 @@ package com.jypure.leetcode;
 import com.jypure.ListNode;
 
 /**
+ * 链表相交
+ * https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/
  * @author : jiayupeng
  * @date : 2022/7/8/14:55
  */
-public class CodeInterView0207 {
+public class Code3 {
 
     /**
      * 牛逼
