@@ -63,6 +63,7 @@ public class Code18 {
             while(j>=0 && haystack.charAt(i) != needle.charAt(j+1)){
                 j = next[j];
             }
+
             if(haystack.charAt(i)==needle.charAt(j+1)){
                 j++;
             }
@@ -77,8 +78,10 @@ public class Code18 {
     }
 
     private void getNext(int[] next, String s) {
+        //j是公共前后缀长度，j指向前缀
         int j = -1;
-        next[0] = j;
+        next[0] = j;//向右移一个
+        //i从1开始，i是后缀
         for (int i = 1; i < s.length(); i++) {
             while (j >= 0 && s.charAt(i) != s.charAt(j + 1)) {
                 j = next[j];
