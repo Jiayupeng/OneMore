@@ -94,5 +94,48 @@ public class Code18 {
         }
     }
 
+    public int strStr2(String haystack, String needle){
+        if (needle.length() == 0) {
+            return 0;
+        }
+
+        int[] next = new int[needle.length()];
+        getNext1(next, needle);
+
+        int j = -1;//j是needle的下标
+        for (int i = 0; i < haystack.length(); i++) {
+            //处理不同的情况
+            while (j >= 0 && haystack.charAt(i) != needle.charAt(i)) {
+                j = next[j];
+            }
+            //处理相同的情况
+            if (haystack.charAt(i) == needle.charAt(j + 1)) {
+                j++;
+            }
+            //正确的结果,j走到最后
+            if (j == needle.length() - 1) {
+                //用i减去needle的长度
+                return i - needle.length() + 1;
+            }
+        }
+
+        return -1;
+    }
+
+    private void getNext1(int[] next, String needle) {
+        int j = -1;
+        next[0] = j;
+        for (int i = 1; i < needle.length(); i++) {
+            if (needle.charAt(i) == needle.charAt(j + 1)) {
+                j++;
+            }
+            while (j >= 0 && needle.charAt(i) != needle.charAt(j + 1)) {
+                j = next[j];
+            }
+            next[i] = j;
+        }
+
+    }
+
 
 }
