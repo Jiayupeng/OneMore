@@ -1,7 +1,10 @@
 package com.jypure.leetcode;
 
+import com.jypure.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * https://leetcode.cn/problems/binary-tree-preorder-traversal/submissions/
@@ -19,20 +22,7 @@ public class Code27 {
     3、确定单层递归的逻辑
      */
 
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(){}
-        TreeNode(int val) { this.val = val; }
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-
-    }
 
     public List<Integer> preorderTravelsal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
