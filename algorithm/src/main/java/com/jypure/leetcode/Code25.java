@@ -12,6 +12,11 @@ import java.util.PriorityQueue;
  */
 public class Code25 {
 
+
+    /*
+    维护元素单调递减的队列就叫做单调队列，即单调递减或单调递增的队列
+     */
+
     /**
      * 优先级队列
      * @param nums
