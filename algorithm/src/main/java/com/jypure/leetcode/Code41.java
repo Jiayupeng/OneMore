@@ -46,4 +46,34 @@ public class Code41 {
 
     }
 
+    /**
+     * 递归，后序遍历，先处理左右孩子，再处理中节点
+     *
+     * 最小深度，是指从根节点，到最近的叶子节点的最短路径上的节点数量。
+     * @param root
+     * @return
+     */
+    public int minDepth1(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        //左孩子
+        int leftDepth = minDepth1(root.left);
+        //右孩子
+        int rightDepth = minDepth1(root.right);
+
+        //中间节点
+        if (root.left == null) {
+            return rightDepth + 1;
+        }
+        if (root.right == null) {
+            return leftDepth + 1;
+        }
+
+        return Math.min(leftDepth, rightDepth) + 1;
+
+
+    }
+
 }
