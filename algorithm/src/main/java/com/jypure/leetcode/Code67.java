@@ -33,6 +33,7 @@ public class Code67 {
             return;
         }
 
+        //剪枝
         for (int i = startIndex; i <= n - (k - path.size()) + 1; i++) {
             path.add(i);
             combineHelper(n, k, i + 1);
