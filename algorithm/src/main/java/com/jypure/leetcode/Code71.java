@@ -10,6 +10,7 @@ public class Code71 {
 
     //贪心：局部最优推出全局最优
 
+    //不能让“连续和”为负数的时候加上下一个元素，而不是 不让“连续和”加上一个负数
     public int maxSubArray(int[] nums) {
         int result = Integer.MIN_VALUE;
         int count = 0;
